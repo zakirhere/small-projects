@@ -3,19 +3,20 @@ package com.vonage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class forwarding extends main{
+public class forwarding extends main {
 	
-	private static By fwdbutton = By.linkText("Call Forwarding");
-	private static By toggleFwd = By.id("callForwarding");
 	
 	
 	public void openForwardingPage() {
+		waitForElementToLoad(fwdbutton);
+		
 		myDriver.findElement(fwdbutton).click();
 		
 		//Validate that the forward page is visible
 	}
 	
 	public void disableForwarding() {
+		waitForElementToLoad(toggleFwd);
 		WebElement button = myDriver.findElement(toggleFwd);
 		if(button.isSelected()) {
 			button.click();
