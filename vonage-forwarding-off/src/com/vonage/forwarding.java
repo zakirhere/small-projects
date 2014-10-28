@@ -16,11 +16,13 @@ public class forwarding extends main {
 	}
 	
 	public void disableForwarding() {
-		waitForElementToLoad(toggleFwd);
+		waitForElementToLoad(fwdContainer);
 		WebElement button = myDriver.findElement(toggleFwd);
 		if(button.isSelected()) {
+			System.out.println("Disabling call forwarding now.");
 			button.click();
 			//Validate that the button is disabled.
+			addDelay(2000);
 		}
 		else
 		{

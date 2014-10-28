@@ -10,6 +10,8 @@ public class main {
 	protected static String VONAGEURL = "https://secure.vonage.com/m/#/login";
 	protected static By Signout = By.id("");
 	protected static By fwdbutton = By.linkText("Call Forwarding");
+	
+	protected static By fwdContainer = By.className("iPhoneCheckContainer");
 	protected static By toggleFwd = By.id("callForwarding");
 	protected static By username = By.name("username");
 	protected static By password = By.name("password");
@@ -59,6 +61,7 @@ public class main {
 	public boolean waitForElementToLoad(By elem) {
 		
 		for(int i=0; i<30; i++) {
+			//System.out.println("TEMP: searching for element: " + elem.toString());
 			try {
 				if(myDriver.findElement(elem).getSize() != null 
 						&& myDriver.findElement(elem).isDisplayed()) {
@@ -75,11 +78,12 @@ public class main {
 			System.out.println("ERROR: Element exists but not visible: " + elem.toString());
 			
 		return false;
-			
+
 	}
 	
 	public void addDelay(int duration) {
 		try {
+			//System.out.println("TEMP: starting delay (mSec): " + duration);
 			Thread.sleep(duration);
 		}
 		catch (Exception e) {
