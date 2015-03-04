@@ -1,6 +1,7 @@
 package remoteLogin;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class main {
@@ -22,18 +23,22 @@ public class main {
 		}
 		catch(Exception ex)
 		{
-			System.out.println("Exception found");
-			myDriver.close();
+			System.out.println("Exception found. " + ex.getMessage());
 			
 		}
 		finally
 		{
 			System.out.println("Test completed");			
+			myDriver.close();
 		}
 	}
 
 	public static WebDriver launchBrowser() {
-		WebDriver myDriver = new FirefoxDriver();
+		//WebDriver myDriver = new FirefoxDriver();
+		String libPath = System.getProperty("user.dir") + "/../../zak_library/chromedriver";
+		System.setProperty("webdriver.chrome.driver", libPath);
+		WebDriver myDriver = new ChromeDriver();
+			
 		return myDriver;
 	}
 }

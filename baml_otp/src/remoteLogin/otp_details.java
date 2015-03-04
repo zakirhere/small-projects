@@ -10,35 +10,19 @@ public class otp_details {
 	public By tStandardID = By.id("USER");
 	public By tPassword = By.id("PASSWORD");
 	public By bOTP = By.className("buttonOTP");
+	public By lConfirmation = By.id("confirmationSendOTP");
 	
 	
 	public otp_details(WebDriver clsDriver) {
-		this.myDriver = clsDriver;
+		myDriver = clsDriver;
 	}
 	
 	public void launchOTPpage() {
-		//Store the current window handle
-		String winHandleBefore = myDriver.getWindowHandle();
-
-		//Perform the click operation that opens new window
-
 		//Switch to new window opened
 		for(String winHandle : myDriver.getWindowHandles()){
 			myDriver.switchTo().window(winHandle);
 		}
-
-		// Perform the actions on new window
-
-		//Close the new window, if that window no more required
-
-		//Switch back to original browser (first window)
-
-	//	myDriver.switchTo().window(winHandleBefore);
-
-		//continue with original browser (first window)
-		
-//		System.out.println(myDriver.getWindowHandle().length());
-//		myDriver.switchTo().frame(sURL1);
+		//myDriver.switchTo().Window(myDriver.getWindowHandles().
 	}
 	
 	public void enterFormOTP() {
@@ -48,6 +32,15 @@ public class otp_details {
 	
 	public void clickLogon() {
 		myDriver.findElement(bOTP).click();
-		myDriver.close();
+		if(this.validateOTPSuccess() == false) {
+			myDriver.close();
+		}
 	}
+	
+	public boolean validateOTPSuccess() {
+		return myDriver.findElement(tStandardID).isDisplayed();
+	}
+	
+	
+	
 }
